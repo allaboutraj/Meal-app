@@ -8,7 +8,77 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Helloo</h1>
+    <div class="container">
+        <!-- <div class="nav">
+            <div>
+                <a href="#">Home</a>
+            </div>
+            <div class="right">
+                <ul class="nav-list">
+                    <li><a href="#">Favorite</a></li>
+                    <li><a href="#">Sign In</a></li>
+                </ul>
+            </div>
+        </div> -->
+        <div class="meal-wrapper">
+            <div class="search">
+                <h2 class="title">Search Delisious Meal !!!</h2>
+
+                <div class="search-box">
+                    <input type="text" class="search-control"
+                    placeholder="Enter Name of Meal" id="search-input">
+
+                    <button type="submit" class="search-btn btn" id="search-btn">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="result">
+                <h2 class="title">Your Search Results - </h2>
+                <div class="meal">
+                    <!-- meal item Details-->
+                    <div class="meal-item">
+                        <div class="meal-img">
+                            <img src="assets/flame-grilled.jpg" alt="meal">
+                        </div>
+                        <div class="meal-name">
+                            <h3>Grilled</h3>
+                            <div id="meal-button">
+                                <a href="#" class="recipe-btn">Get Recipe</a>
+                                <a href="#" class="fav-btn">Add to Favorites</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- meal item Details Ends-->
+                </div>
+            </div>
+            <!-- Meal Details Start -->
+            <div class = "m-details">
+                <!-- recipe close btn -->
+                <button type = "button" class = "btn recipe-close-btn" id = "recipe-close-btn">
+                  <i class = "fas fa-times"></i>
+                </button>
+                <div class="m-details-contents">
+                    <h2 class = "recipe-title">Meals Name Here</h2>
+                    <p class = "recipe-category">Category Name</p>
+                    <div class = "recipe-instruct">
+                        <h3>Instructions:</h3>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo blanditiis quis accusantium natus! Porro, reiciendis maiores molestiae distinctio veniam ratione ex provident ipsa, soluta suscipit quam eos velit autem iste!</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet aliquam voluptatibus ad obcaecati magnam, esse numquam nisi ut adipisci in?</p>
+                    </div>
+                    <div class = "recipe-meal-img">
+                        <img src = "assets/flame-grilled.jpg" alt = "Food Picture">
+                    </div>
+                    <div class = "recipe-link">
+                        <button class="watch-btn">
+                            <a href = "#" target = "_blank">Watch Video</a>
+                        </button>
+                    </div>
+                </div>
+                <!-- Meal Details End -->
+            </div>
+        </div>
+    </div>
 
     <Script src="scripts.js"></script>
 </body>
