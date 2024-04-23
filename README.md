@@ -21,7 +21,8 @@ A simple web application to store and search meals.
   - Displays information about the meal such as its name, photo, instructions, etc.
   - Have close button by clicking on that this page will close.
   - Have watch Button by clicking o that you will directly go to Youtube page linked to the meal.
-  - ![More Detail Page](https://github.com/allaboutraj/Meal-app/assets/49842899/5d9fd1da-fdd2-424c-8e72-b6754257b148)
+  - ![image](https://github.com/allaboutraj/Meal-app/assets/49842899/65eeedf8-1dcc-4ac4-906b-7698a182e3ca)
+
 
 
 - **My favorite meals Page**
@@ -34,7 +35,7 @@ A simple web application to store and search meals.
 - HTML
 - CSS
 - themealApi(https://www.themealdb.com/api.php)
-**Responsive Design
+- Responsive Design
 
 ## How to Use
 1. Clone this repository.
