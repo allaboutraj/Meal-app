@@ -8,18 +8,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Navbar -->
+    <div class="nav">
+        <div class="left">
+            <a href="#">Home</a>
+        </div>
+        <div class="right">
+            <ul class="nav-list">
+                <li><a href="#">Favorite</a></li>
+                <li><a href="#">Sign In</a></li>
+            </ul>
+        </div>
+    </div>
     <div class="container">
-        <!-- <div class="nav">
-            <div>
-                <a href="#">Home</a>
-            </div>
-            <div class="right">
-                <ul class="nav-list">
-                    <li><a href="#">Favorite</a></li>
-                    <li><a href="#">Sign In</a></li>
-                </ul>
-            </div>
-        </div> -->
         <div class="meal-wrapper">
             <div class="search">
                 <h2 class="title">Search Delisious Meal !!!</h2>
@@ -33,11 +34,26 @@
                     </button>
                 </div>
             </div>
+
             <div class="result">
                 <h2 class="title">Your Search Results - </h2>
-                <div class="meal">
+                <div id="meal">
                     <!-- meal item Details-->
-                    <div class="meal-item">
+                    <!-- <div class="meal-item">
+                        <div class="meal-img">
+                            <img src="assets/flame-grilled.jpg" alt="meal">
+                        </div>
+                        <div class="meal-name">
+                            <h3>Grilled</h3>
+                            <div id="meal-button">
+                                <a href="#" class="recipe-btn">Get Recipe</a>
+                                <a href="#" class="fav-btn">Add to Favorites</a>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <br /> -->
+                    <!-- Tempry -->
+                    <!-- <div class="meal-item">
                         <div class="meal-img">
                             <img src="assets/flame-grilled.jpg" alt="meal">
                         </div>
@@ -49,17 +65,19 @@
                             </div>
                         </div>
                     </div>
+                    Tempry -->
                     <!-- meal item Details Ends-->
                 </div>
             </div>
             <!-- Meal Details Start -->
             <div class = "m-details">
-                <!-- recipe close btn -->
-                <button type = "button" class = "btn recipe-close-btn" id = "recipe-close-btn">
+                <!-- Meal Recipe close btn -->
+                <button type = "button" class ="btn close-btn" id ="recipe-close-btn">
                   <i class = "fas fa-times"></i>
                 </button>
+                <!-- All the Meal Content -->
                 <div class="m-details-contents">
-                    <h2 class = "recipe-title">Meals Name Here</h2>
+                    <!-- <h2 class = "recipe-title">Meals Name Here</h2>
                     <p class = "recipe-category">Category Name</p>
                     <div class = "recipe-instruct">
                         <h3>Instructions:</h3>
@@ -73,13 +91,13 @@
                         <button class="watch-btn">
                             <a href = "#" target = "_blank">Watch Video</a>
                         </button>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- Meal Details End -->
             </div>
         </div>
     </div>
 
-    <Script src="scripts.js"></script>
+    <Script src="script.js"></script>
 </body>
 </html>
