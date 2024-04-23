@@ -28,6 +28,7 @@ function getMealList(){
                         <div class = "meal-name">
                             <h3>${meal.strMeal}</h3>
                             <a href = "#" class = "recipe-btn">Get Recipe</a>
+                            <a href="#" class="fav-btn">Add to Favorites</a>
                         </div>
                     </div>
                 `;
