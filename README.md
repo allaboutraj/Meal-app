@@ -1,6 +1,6 @@
 # Meal App
 
-A simple web application to store and search meals(Using Vanila Js).
+A simple web application to store and search meals.
 
 ## Features
 
@@ -9,9 +9,21 @@ A simple web application to store and search meals(Using Vanila Js).
   - Search results update as you type.
   - Each search result has a favorite button to add the meal to "My favorite meals".
   - Clicking on a search result opens a new page with more information about that meal.
+  - ![Home Page](https://github.com/allaboutraj/Meal-app/assets/49842899/c67764e9-84f1-4856-a92b-0302af698e92)
+  - ![Enter Meal name in Search box and click on search icon](https://github.com/allaboutraj/Meal-app/assets/49842899/887f2a0b-09a9-42c3-886e-bf7a67659203)
+  - ![Search result Using API](https://github.com/allaboutraj/Meal-app/assets/49842899/01855670-3f7d-4808-9c86-580b2b60d39b)
+  - ![Responsive web-Page](https://github.com/allaboutraj/Meal-app/assets/49842899/95dcdd64-19ff-4b9f-a47e-0aca96a77445)
+
+
+
+
 
 - **Meal Detail Page**
   - Displays information about the meal such as its name, photo, instructions, etc.
+  - Have close button by clicking on that this page will close.
+  - Have watch Button by clicking o that you will directly go to Youtube page linked to the meal.
+  - ![More Detail Page](https://github.com/allaboutraj/Meal-app/assets/49842899/41f727c9-c484-4138-82cb-0226e583a475)
+
 
 - **My favorite meals Page**
   - Displays a list of all the favorite meals.
@@ -20,6 +32,9 @@ A simple web application to store and search meals(Using Vanila Js).
 
 ## Technologies Used
 - Vanilla JavaScript
+- HTML
+- CSS
+- themealApi(https://www.themealdb.com/api.php)
 
 ## How to Use
 1. Clone this repository.
