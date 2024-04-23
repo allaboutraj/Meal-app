@@ -1,6 +1,6 @@
 # Meal App
 
-A simple web application to store and search meals.
+A simple web application to store and search meals(Using Vanila Js).
 
 ## Features
 
