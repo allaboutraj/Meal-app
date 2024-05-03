@@ -9,7 +9,8 @@ A simple web application to store and search meals.
   - Search results update as you type.
   - Each search result has a favorite button to add the meal to "My favorite meals".
   - Clicking on a search result opens a new page with more information about that meal.
-  - ![Home Page](https://github.com/allaboutraj/Meal-app/assets/49842899/c67764e9-84f1-4856-a92b-0302af698e92)
+  - ![Home Page](![image](https://github.com/allaboutraj/Meal-app/assets/49842899/6db585a5-afb4-4b8a-ac14-4a0723ab0c2b)
+)
   - ![Enter Meal name in Search box and click on search icon](https://github.com/allaboutraj/Meal-app/assets/49842899/887f2a0b-09a9-42c3-886e-bf7a67659203)
   - ![Search result Using API](https://github.com/allaboutraj/Meal-app/assets/49842899/01855670-3f7d-4808-9c86-580b2b60d39b)
 
