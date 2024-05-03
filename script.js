@@ -2,14 +2,24 @@ const searchBtn = document.getElementById('search-btn');
 const mealList  = document.getElementById('meal');
 const mealDetailsContent = document.querySelector('.m-details-contents');
 const closeBtn = document.querySelector('.close-btn');
+const favouriteMeals = document.getElementById('favourite-meals'); //Favourite Meal button to display
+
+let favArray = []; //To store favourite meal IDs
+
+// check if favArray exists in local Storage or not
+if(!localStorage.getItem("favArray")){
+    localStorage.setItem("favArray", JSON.stringify(favArray));
+}else{
+    favArray = JSON.parse(localStorage.getItem("favArray"));
+}
 
 // event listeners
 searchBtn.addEventListener('click', getMealList);
 mealList.addEventListener('click', getMealRecipe);
+mealList.addEventListener('click', addFavorite);
 closeBtn.addEventListener('click', () => {
     mealDetailsContent.parentElement.classList.remove('showRecipe');
 });
-
 
 // get meal list that matches with the meal search
 function getMealList(){
@@ -28,10 +38,14 @@ function getMealList(){
                         <div class = "meal-name">
                             <h3>${meal.strMeal}</h3>
                             <a href = "#" class = "recipe-btn">Get Recipe</a>
-                            <a href="#" class="fav-btn">Add to Favorites</a>
+                            <a href = "#" class = "fav-btn">Add Favourite</a>
                         </div>
                     </div>
                 `;
+                var favoriteButton = document.querySelectorAll('favourite');
+                for (let button of favoriteButton) {
+                  button.addEventListener('click', toggleFavorites);
+                }
             });
             mealList.classList.remove('notFound');
         } else{
@@ -51,6 +65,20 @@ function getMealRecipe(e){
         fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealItem.dataset.id}`)
         .then(response => response.json())
         .then(data => mealRecipeModal(data.meals));
+    }
+}
+
+//When Fav-btn clicked
+function addFavorite(e){
+    e.preventDefault();
+    if(e.target.classList.contains('fav-btn')){
+        if(e.target.classList.contains('is-fav')){
+            //remove the class
+            e.target.classList.remove('is-fav');
+        }else{
+            //add the class
+            e.target.classList.add('is-fav');
+        }
     }
 }
 

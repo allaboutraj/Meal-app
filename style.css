@@ -17,38 +17,57 @@ body{
 }
 
 /* Navbar Starts */
-.nav{
-    display:flex;
-    align-items: flex-start;
-    justify-content: space-around;
-    font-size: 1.5rem;
-    padding: 1rem;
-    margin: 1rem;
+.navbar{
+    height: 80px;
+    width: 100%;
     background-color: var(--bg-color);
     color: #fff;
-    border-radius: 10px;
 }
 
-.nav a{
-    margin: 0 30px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: white;
+.navbar .logo{
+    font-size:35px;
+    line-height: 80px;
+    padding:0 25px;
+    font-weight: bold;
+}
+
+.navbar ul{
+    float: right;
+    margin-right: 20px;
+}
+
+.navbar ul li{
+    display: inline-block;
+    line-height:80px;
+    margin: 0 7px;
+}
+
+.navbar ul li a{
+    color: #fff;
+    font-size: 20px;
     text-decoration: none;
-}
-.nav-list{ 
-    list-style: none;
-    display: flex;
-}
-
-.nav-list a:hover, .left a:hover{ 
-    border-bottom: 3px solid white;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 7px 13px;
 }
 
-.nav-list ul li{
-    text-decoration: none;
+a.active, a:hover{
+    border-bottom: #fff 2.5px solid;
+    transition: .5s;
 }
 
+.checkbtn{
+    font-size: 30px;
+    color: #fff;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    display: none;
+}
+
+#check{
+    display: none;
+}
 /* Navbar Ends */
 
 .btn{
@@ -65,16 +84,19 @@ body{
 .title{
     font-size: 2rem;
     margin-bottom: 1rem;
+    color: white;
 }
 
 .container{
     min-height: 100vh;
+
 }
 .meal-wrapper{
     max-width: 1280px;
     margin: 0 auto;
     padding: 2rem;
-    background-color: #fff;
+    /* background-color: #fff; */
+    background-color: transparent;
     text-align: center;
 }
 
@@ -156,6 +178,7 @@ body{
 }
 .meal-name h3{
     font-size: 1.4rem;
+    color: #fff;
 }
 
 .fav-btn ,.recipe-btn, .watch-btn{
@@ -323,8 +346,53 @@ body{
     opacity: 0.8;
 }
 
+.clicked{
+    /* background-color: #DFDFDF !important; */
+    background-color: var(--bg-dark) !important;
+    color: red !important;
+}
 
 /* Media Queries */
+@media (max-width:952px){
+    label.logo{
+        font-size:30px;
+        padding-left: 50px;
+    }
+
+    navbar ul li a{
+        font-size:16px;
+    }
+}
+
+@media (max-width:858px){
+    .checkbtn{
+        display: block;
+    }
+    .navbar ul{
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background:  #454545;
+        top: 80px;
+        left: -100%;
+        text-align: center;
+        transition: all .5s;
+    }
+
+    .navbar ul li{
+        display: block;
+        margin: 50px 0;
+        line-height: 30px;
+    }
+    .navbar ul li a{
+        font-size:20px;
+    }
+
+    #check:checked ~ ul{
+        left: 0;
+    }
+}
+
 @media screen and (min-width: 600px){
     .search-box{
         width: 540px;
@@ -351,4 +419,12 @@ body{
     #meal{
         grid-template-columns: repeat(3, 1fr);
     }
+}
+
+.container{
+    background: url(./assets/flame-grilled.jpg) no-repeat;
+    background-size:cover;
+    height:calc(100vh - 80 px);
+    /* filter: blur(8px);
+    -webkit-filter: blur(1px); */
 }
