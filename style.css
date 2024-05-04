@@ -70,6 +70,71 @@ a.active, a:hover{
 }
 /* Navbar Ends */
 
+/* Sidebar starts */
+
+.contain{
+    display: flex;
+    width:70%;
+    margin-bottom: 30px;
+}
+
+/* #root{
+    width:30%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    margin-top: 50px;
+
+} */
+
+.sidebar{
+    /* width:40%;
+    border-radius: 5px;
+    background-color: #eee;
+    margin-left: 20px;
+    padding: 15px;
+    text-align: center; */
+    padding-top: 5px;
+    position:fixed;
+    top: 80px;
+    left: calc(100%-500px);
+    width: 500px;
+    background-color: #453E3B;
+    color:#fff;
+    height: 100vh;
+    transition: 0.5s;
+}
+
+.head{
+    background-color: var(--bg-color);
+    border-radius: 4px;
+    height: 40px;
+    padding: 12px;
+    margin-bottom: 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.checkbtn2{
+    font-size: 30px;
+    color: #fff;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    /* display: none; */
+}
+
+/* #check2{
+    display: none;
+} */
+.contain{
+    display: none;
+}
+
+/* Sidebar ends */
+
 .btn{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     cursor: pointer;
@@ -89,7 +154,6 @@ a.active, a:hover{
 
 .container{
     min-height: 100vh;
-
 }
 .meal-wrapper{
     max-width: 1280px;

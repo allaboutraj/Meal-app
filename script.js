@@ -1,36 +1,44 @@
-const searchBtn = document.getElementById('search-btn');
-const mealList  = document.getElementById('meal');
-const mealDetailsContent = document.querySelector('.m-details-contents');
-const closeBtn = document.querySelector('.close-btn');
-const favouriteMeals = document.getElementById('favourite-meals'); //Favourite Meal button to display
+const searchBtn = document.getElementById("search-btn");
+const mealList = document.getElementById("meal");
+const mealDetailsContent = document.querySelector(".m-details-contents");
+const closeBtn = document.querySelector(".close-btn");
+// const favouriteMeals = document.getElementById("favourite-meals"); //Favourite Meal button to display
+const closeFab = document.querySelector(".checkbtn2"); //Favourite Meal button to display
+// const fabContain = document.querySelector("sidebar");
 
 let favArray = []; //To store favourite meal IDs
 
 // check if favArray exists in local Storage or not
-if(!localStorage.getItem("favArray")){
-    localStorage.setItem("favArray", JSON.stringify(favArray));
-}else{
-    favArray = JSON.parse(localStorage.getItem("favArray"));
+if (!localStorage.getItem("favArray")) {
+  localStorage.setItem("favArray", JSON.stringify(favArray));
+} else {
+  favArray = JSON.parse(localStorage.getItem("favArray"));
 }
 
 // event listeners
-searchBtn.addEventListener('click', getMealList);
-mealList.addEventListener('click', getMealRecipe);
-mealList.addEventListener('click', addFavorite);
-closeBtn.addEventListener('click', () => {
-    mealDetailsContent.parentElement.classList.remove('showRecipe');
+searchBtn.addEventListener("click", getMealList);
+mealList.addEventListener("click", getMealRecipe);
+mealList.addEventListener("click", addFavorite);
+closeBtn.addEventListener("click", () => {
+  mealDetailsContent.parentElement.classList.remove("showRecipe");
 });
 
+// closeFab.addEventListener("click", () => {
+//   fabContain.parentElement.classList.remove("sidebar");
+// });
+
 // get meal list that matches with the meal search
-function getMealList(){
-    let searchInputTxt = document.getElementById('search-input').value.trim();
-    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchInputTxt}`)
-    .then(response => response.json())
-    .then(data => {
-        let html = "";
-        if(data.meals){
-            data.meals.forEach(meal => {
-                html += `
+function getMealList() {
+  let searchInputTxt = document.getElementById("search-input").value.trim();
+  fetch(
+    `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchInputTxt}`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      let html = "";
+      if (data.meals) {
+        data.meals.forEach((meal) => {
+          html += `
                     <div class = "meal-item" data-id = "${meal.idMeal}">
                         <div class = "meal-img">
                             <img src = "${meal.strMealThumb}" alt = "food">
@@ -42,51 +50,48 @@ function getMealList(){
                         </div>
                     </div>
                 `;
-                var favoriteButton = document.querySelectorAll('favourite');
-                for (let button of favoriteButton) {
-                  button.addEventListener('click', toggleFavorites);
-                }
-            });
-            mealList.classList.remove('notFound');
-        } else{
-            html = "Sorry, we didn't find any meal!";
-            mealList.classList.add('notFound');
-        }
-        mealList.innerHTML = html;
+        });
+        mealList.classList.remove("notFound");
+      } else {
+        html = "Sorry, we didn't find any meal!";
+        mealList.classList.add("notFound");
+      }
+      mealList.innerHTML = html;
     });
 }
 
-
 // get recipe of the meal
-function getMealRecipe(e){
-    e.preventDefault();
-    if(e.target.classList.contains('recipe-btn')){
-        let mealItem = e.target.parentElement.parentElement;
-        fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealItem.dataset.id}`)
-        .then(response => response.json())
-        .then(data => mealRecipeModal(data.meals));
-    }
+function getMealRecipe(e) {
+  e.preventDefault();
+  if (e.target.classList.contains("recipe-btn")) {
+    let mealItem = e.target.parentElement.parentElement;
+    fetch(
+      `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealItem.dataset.id}`
+    )
+      .then((response) => response.json())
+      .then((data) => mealRecipeModal(data.meals));
+  }
 }
 
 //When Fav-btn clicked
-function addFavorite(e){
-    e.preventDefault();
-    if(e.target.classList.contains('fav-btn')){
-        if(e.target.classList.contains('is-fav')){
-            //remove the class
-            e.target.classList.remove('is-fav');
-        }else{
-            //add the class
-            e.target.classList.add('is-fav');
-        }
+function addFavorite(e) {
+  e.preventDefault();
+  if (e.target.classList.contains("fav-btn")) {
+    if (e.target.classList.contains("is-fav")) {
+      //remove the class
+      e.target.classList.remove("is-fav");
+    } else {
+      //add the class
+      e.target.classList.add("is-fav");
     }
+  }
 }
 
 // create a modal
-function mealRecipeModal(meal){
-    console.log(meal);
-    meal = meal[0];
-    let html = `
+function mealRecipeModal(meal) {
+  console.log(meal);
+  meal = meal[0];
+  let html = `
         <h2 class = "recipe-title">${meal.strMeal}</h2>
         <p class = "recipe-category">${meal.strCategory}</p>
         <div class = "recipe-instruct">
@@ -102,6 +107,20 @@ function mealRecipeModal(meal){
             </button>
         </div>
     `;
-    mealDetailsContent.innerHTML = html;
-    mealDetailsContent.parentElement.classList.add('showRecipe');
+  mealDetailsContent.innerHTML = html;
+  mealDetailsContent.parentElement.classList.add("showRecipe");
 }
+
+// function addTofab(meal) {
+//   html += `
+//           <div class = "meal-item" data-id = "${meal.idMeal}">
+//               <div class = "meal-img">
+//                 <img src = "${meal.strMealThumb}" alt = "food">
+//               </div>
+//               <div class = "meal-name">
+//                   <h3>${meal.strMeal}</h3>
+//                   <i class="fa fa-trash"></i>
+//               </div>
+//           </div>
+//         `;
+// }
