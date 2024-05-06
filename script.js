@@ -2,12 +2,12 @@ const searchBtn = document.getElementById("search-btn");
 const mealList = document.getElementById("meal");
 const mealDetailsContent = document.querySelector(".m-details-contents");
 const closeBtn = document.querySelector(".close-btn");
-const favouriteMeals = document.getElementById("favourite-meals"); //Favourite Meal button to display
+const favouriteMeals = document.getElementById("fav-like-button"); //Favourite Meal button to display
 const toggleButton = document.getElementById("toggle-sidebar");
 const favClose = document.getElementById("checkbtn2");
 const sideBar = document.getElementById("sidebar");
 
-const favArray = []; //To store favourite meal IDs
+// const favArray = []; //To store favourite meal IDs
 
 //Toggle Sidebar
 toggleButton.addEventListener("click", function () {
@@ -20,13 +20,6 @@ favClose.addEventListener("click", function () {
   sideBar.classList.toggle("show");
 });
 
-// check if favArray exists in local Storage or not
-if (!localStorage.getItem("favArray")) {
-  localStorage.setItem("favArray", JSON.stringify(favArray));
-} else {
-  favArray = JSON.parse(localStorage.getItem("favArray"));
-}
-
 /*Initialize the local storage items for favorite list */
 const objectEle = "favMealList";
 if (localStorage.getItem(objectEle) == null) {
@@ -36,7 +29,7 @@ if (localStorage.getItem(objectEle) == null) {
 // event listeners
 searchBtn.addEventListener("click", getMealList);
 mealList.addEventListener("click", getMealRecipe);
-mealList.addEventListener("click", addFavorite);
+favouriteMeals.addEventListener("click", addFavorite);
 
 closeBtn.addEventListener("click", () => {
   mealDetailsContent.parentElement.classList.remove("showRecipe");
