@@ -2,11 +2,23 @@ const searchBtn = document.getElementById("search-btn");
 const mealList = document.getElementById("meal");
 const mealDetailsContent = document.querySelector(".m-details-contents");
 const closeBtn = document.querySelector(".close-btn");
-// const favouriteMeals = document.getElementById("favourite-meals"); //Favourite Meal button to display
-const closeFab = document.querySelector(".checkbtn2"); //Favourite Meal button to display
-// const fabContain = document.querySelector("sidebar");
+const favouriteMeals = document.getElementById("favourite-meals"); //Favourite Meal button to display
+const toggleButton = document.getElementById("toggle-sidebar");
+const favClose = document.getElementById("checkbtn2");
+const sideBar = document.getElementById("sidebar");
 
-let favArray = []; //To store favourite meal IDs
+const favArray = []; //To store favourite meal IDs
+
+//Toggle Sidebar
+toggleButton.addEventListener("click", function () {
+  //   showMealList();
+  sideBar.classList.toggle("show");
+});
+
+//Close sidebar
+favClose.addEventListener("click", function () {
+  sideBar.classList.toggle("show");
+});
 
 // check if favArray exists in local Storage or not
 if (!localStorage.getItem("favArray")) {
@@ -15,17 +27,20 @@ if (!localStorage.getItem("favArray")) {
   favArray = JSON.parse(localStorage.getItem("favArray"));
 }
 
+/*Initialize the local storage items for favorite list */
+const objectEle = "favMealList";
+if (localStorage.getItem(objectEle) == null) {
+  localStorage.setItem(objectEle, JSON.stringify([]));
+}
+
 // event listeners
 searchBtn.addEventListener("click", getMealList);
 mealList.addEventListener("click", getMealRecipe);
 mealList.addEventListener("click", addFavorite);
+
 closeBtn.addEventListener("click", () => {
   mealDetailsContent.parentElement.classList.remove("showRecipe");
 });
-
-// closeFab.addEventListener("click", () => {
-//   fabContain.parentElement.classList.remove("sidebar");
-// });
 
 // get meal list that matches with the meal search
 function getMealList() {
@@ -46,7 +61,7 @@ function getMealList() {
                         <div class = "meal-name">
                             <h3>${meal.strMeal}</h3>
                             <a href = "#" class = "recipe-btn">Get Recipe</a>
-                            <a href = "#" class = "fav-btn">Add Favourite</a>
+                            <a href = "#" class = "fav-btn" id="fav-like-button" onclick="addRemoveToFavList('${meal.idMeal}')">Add Favourite</a>
                         </div>
                     </div>
                 `;
@@ -110,17 +125,3 @@ function mealRecipeModal(meal) {
   mealDetailsContent.innerHTML = html;
   mealDetailsContent.parentElement.classList.add("showRecipe");
 }
-
-// function addTofab(meal) {
-//   html += `
-//           <div class = "meal-item" data-id = "${meal.idMeal}">
-//               <div class = "meal-img">
-//                 <img src = "${meal.strMealThumb}" alt = "food">
-//               </div>
-//               <div class = "meal-name">
-//                   <h3>${meal.strMeal}</h3>
-//                   <i class="fa fa-trash"></i>
-//               </div>
-//           </div>
-//         `;
-// }

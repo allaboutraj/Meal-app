@@ -15,7 +15,7 @@
         <label class="logo">Meal App</label>
         <ul>
             <li><a href="#">Home</a></li>
-            <li><a href="#sidebar">Favourite</a></li>
+            <li><a href="#" id="toggle-sidebar">Favourite</a></li>
             <li><a href="#">Blogs</a></li>
             <li><a href="#">Sing In</a></li>
         </ul>
@@ -23,17 +23,15 @@
     <!-- Navbar Ends here -->
     <div class="container">
     <!-- Meal Sidebar Start from here -->
-    <div class="contain">
-        <div id="root"></div>
         <div class="sidebar" id="sidebar">
-            <div class="head">
+            <div class="head" >
                 <p>Favorite Meal</p>
                 <input type="checkbox" id="check2" >
-                <label for="check2" class="checkbtn2"><i class="fa fa-times"></i></label>
+                <label for="check2" class="checkbtn2" id="checkbtn2"><i class="fa fa-times"></i></label>
             </div>
-            <div class = "fabItem">You are not have any fab</div>
+            <!-- <hr /> -->
+            <div class = "fav">You are not have any fab</div>
         </div>
-    </div>
     <!-- Meal Sidebar Ends here -->   
         <div class="meal-wrapper">
             <div class="search">
