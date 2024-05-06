@@ -29,7 +29,7 @@ if (localStorage.getItem(objectEle) == null) {
 // event listeners
 searchBtn.addEventListener("click", getMealList);
 mealList.addEventListener("click", getMealRecipe);
-favouriteMeals.addEventListener("click", addFavorite);
+// favouriteMeals.addEventListener("click", addFavorite);
 
 closeBtn.addEventListener("click", () => {
   mealDetailsContent.parentElement.classList.remove("showRecipe");
