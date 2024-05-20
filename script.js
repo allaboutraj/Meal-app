@@ -6,12 +6,14 @@ const favouriteMeals = document.getElementById("fav-like-button"); //Favourite M
 const toggleButton = document.getElementById("toggle-sidebar");
 const favClose = document.getElementById("checkbtn2");
 const sideBar = document.getElementById("sidebar");
-
-// const favArray = []; //To store favourite meal IDs
-
+/*Initialize the local storage items for favorite list */
+const objectEle = "favMealList";
+if (localStorage.getItem(objectEle) == null) {
+  localStorage.setItem(objectEle, JSON.stringify([]));
+}
 //Toggle Sidebar
 toggleButton.addEventListener("click", function () {
-  //   showMealList();
+  showFabMealList();
   sideBar.classList.toggle("show");
 });
 
@@ -19,12 +21,6 @@ toggleButton.addEventListener("click", function () {
 favClose.addEventListener("click", function () {
   sideBar.classList.toggle("show");
 });
-
-/*Initialize the local storage items for favorite list */
-const objectEle = "favMealList";
-if (localStorage.getItem(objectEle) == null) {
-  localStorage.setItem(objectEle, JSON.stringify([]));
-}
 
 // event listeners
 searchBtn.addEventListener("click", getMealList);
@@ -35,8 +31,23 @@ closeBtn.addEventListener("click", () => {
   mealDetailsContent.parentElement.classList.remove("showRecipe");
 });
 
+/* It will return truncated string greater then 50*/
+
+function truncate(str, n) {
+  return str?.length > n ? str.substr(0, n - 1) + "..." : str;
+}
+
+/* Fetch mealss from API, url - The base URL for the API, value - The value to append to the URL for filtering the results */
+
+const fetchMeal = async (url, value) => {
+  const response = await fetch(`${url + value}`);
+  const meal = await response.json();
+  return meal;
+};
+
 // get meal list that matches with the meal search
 function getMealList() {
+  const list = JSON.parse(localStorage.getItem(objectEle));
   let searchInputTxt = document.getElementById("search-input").value.trim();
   fetch(
     `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchInputTxt}`
@@ -49,12 +60,18 @@ function getMealList() {
           html += `
                     <div class = "meal-item" data-id = "${meal.idMeal}">
                         <div class = "meal-img">
-                            <img src = "${meal.strMealThumb}" alt = "food">
+                            <img loading="lazy" src = "${
+                              meal.strMealThumb
+                            }" alt = "food">
                         </div>
                         <div class = "meal-name">
                             <h3>${meal.strMeal}</h3>
                             <a href = "#" class = "recipe-btn">Get Recipe</a>
-                            <a href = "#" class = "fav-btn" id="fav-like-button" onclick="addRemoveToFavList('${meal.idMeal}')">Add Favourite</a>
+                            <a href = "#" class = "fav-btn" id="fav-like-button " 
+                            ${favList(list, meal.idMeal) ? "active" : " "}
+                            onclick="addRemoveToFavList('${
+                              meal.idMeal
+                            }')">Add Favourite</a>
                         </div>
                     </div>
                 `;
@@ -117,4 +134,103 @@ function mealRecipeModal(meal) {
     `;
   mealDetailsContent.innerHTML = html;
   mealDetailsContent.parentElement.classList.add("showRecipe");
+}
+
+/*Check if an ID is in a list of favorites
+ list- The list of favorites
+ id- The ID to check*/
+
+function favList(list, id) {
+  let flag = false;
+  for (let i = 0; i < list.length; i++) {
+    if (id == list[i]) {
+      flag = true;
+    }
+  }
+  return flag;
+}
+/* It will return truncated string greater then 50*/
+
+/*addRemoveToFavList - function to add or remove a movie from the favorite list
+  The id of the movie to be added or removed
+  This function first retrieves the data from local storage and then it checks if the provided movie id already exist in the favorite list.
+  If it exists, it removes it from the list, otherwise it adds it to the list. It then updates the local storage*/
+
+function addRemoveToFavList(id) {
+  const PageLikeBtn = document.getElementById("fav-like-button");
+  let db = JSON.parse(localStorage.getItem(objectEle));
+  console.log("before: ", db);
+  let ifExist = false;
+  for (let i = 0; i < db.length; i++) {
+    if (id == db[i]) {
+      ifExist = true;
+    }
+  }
+  if (ifExist) {
+    db.splice(db.indexOf(id), 1);
+  } else {
+    db.push(id);
+  }
+
+  localStorage.setItem(objectEle, JSON.stringify(db));
+  if (PageLikeBtn != null) {
+    PageLikeBtn.innerHTML = isFav(db, id)
+      ? "Remove From Favourite"
+      : "Add To Favourite";
+  }
+  console.log("After:", db);
+  getMealList();
+  // showFabMealList();
+}
+
+/*
+This function is used to show all the movies which are added to the favourite list.
+html - This returns html which is used to show the favourite movies.
+ If there is no favourite movie then it will show "Nothing To Show....."
+showFavMealList()
+*/
+
+async function showFabMealList() {
+  let FavList = JSON.parse(localStorage.getItem(objectEle));
+
+  let url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=";
+  let html = "";
+
+  if (FavList.length == 0) {
+    html = `<div class="fav-item nothing"> <h1> 
+        Nothing To Show</h1> </div>`;
+  } else {
+    for (let i = 0; i < FavList.length; i++) {
+      const data = await fetchMeal(url, FavList[i]);
+      const favmealList = data.meals[0];
+      if (favmealList) {
+        console.log(favmealList);
+        let element = favmealList;
+        html += `
+          <div class="fav-item">
+                <div class="fav-item-photo">
+                <img src="${
+                  element.strMealThumb == "N/A"
+                    ? "image.png"
+                    : element.strMealThumb
+                }" alt="Image">
+                </div>
+                <div class="fav-item-details">
+                         <div class="fav-item-name">
+                                 
+                        <span class="fav-item-text">
+                        ${truncate(element.strMeal, 20)}
+                        </span>
+                    </div>
+                    <div id="fav-like-button" onclick="addRemoveToFavList('${
+                      element.idMeal
+                    }')">
+                        Remove
+                    </div>
+            </div>
+          </div> `;
+      }
+    }
+  }
+  document.getElementById("fav").innerHTML = html;
 }
