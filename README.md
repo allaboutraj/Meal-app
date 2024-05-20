@@ -35,6 +35,8 @@ A simple web application to store and search meals.
 
 - **My favorite meals Page**
   - Displays a list of all the favorite meals.
+  - ![Favorite](https://github.com/allaboutraj/Meal-app/assets/49842899/71989e79-ea25-4a1b-add3-dff73046e24c)
+
   - Persistent list across browser sessions.
   - Each meal has a "Remove from favorites" button to remove it from the list.
 
